@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>My Page</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" >
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/redmond/jquery-ui.css"/>
+    
+    
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="js/mustache.min.js"></script>
+    <script src="js/automatic-direction.js"></script>
+    <script src="js/scripts.js"></script>
+</head>
+
+<body>
+    <!---------------Page 1------------------->
+    <div data-role="page" id="home">
+
+
+        <div data-role="header" data-theme="b">
+            <h1>طلبيات القدس</h1>
+        </div><!-- /header -->
+
+
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home" data-trsnsition="none" data-icon="home" class="ui-btn-active">الرئيسية</a></li>
+                <li><a href="#orders" data-trsnsition="none" data-icon="plus">الطلبيات</a></li>
+                <li><a href="#print" data-trsnsition="none" data-icon="mail">طباعه</a></li>
+            </ul>
+        </div>
+
+
+        <div data-role="main" class="ui-content" dir="rtl">
+            <label for="search-basic" style="text-align: right; display:block;font-size: 2em; color:#3388cc">ادخل رقم الصنف</label>
+            <input type="search" name="search" id="productid" value="" class="dir-auto" />
+            
+            <h3 class="ui-bar ui-bar-a ui-corner-all" style="background-color: #3388cc;color:#ffffff">تفاصيل المنتج</h3>
+            <div class="prodct">
+                <div class="ui-grid-b" >
+                    <div class="ui-block-a"><img src="http://www.ceramicalquds.com/media/item_collection/nbdQjPnHUA.jpg" alt="Italian Tile" style="margin:auto;"></div>
+                    <div class="ui-block-b ui-grid-solo">
+                        <div class="ui-block-a ui-grid-a">
+                            <label id="oprice" class="ui-block-a" style="color:red">45</label>
+                            <label class="ui-block-b plabel">: السعر</label>
+                        </div>
+                        <div class="ui-textinput ui-corner-all ui-shadow-inset ui-textinput-text ui-body-inherit"><input id="price" value=""></div>
+                    </div>
+                    <div class="ui-block-c ui-grid-solo">
+                        <div class="ui-block-a ui-grid-solo">
+                            <label class="ui-block-solo plabel"> : الكمية</label>
+                        </div>
+                        <div class="ui-textinput ui-corner-all ui-shadow-inset ui-textinput-text ui-body-inherit"><input id="amount" value="200"></div>
+                    </div>
+                    </div><!-- /grid-b -->
+                
+
+                
+                <div class="ui-grid-solo">
+                    <p id="desc">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
+                        إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.</p>
+                </div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <label>500</label>
+                    </div>
+                    <div class="ui-block-b">
+                        <label class="plabel">الكمية المتوفرة</label>
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="ui-grid-solo fixed-Btn">
+                <div class="ui-block-a"><button type="v" data-theme="b" id="addproduct">إضافة الى الطلبية</button></div>
+            </div>
+        </div><!-- /Home content -->
+    </div><!-- / Home page -->
+
+
+    <!-------------------Page 2--------------------------->
+    <div data-role="page" id="orders">
+        <div data-role="header" data-theme="b">
+            <h1>طلبيات القدس</h1>
+        </div><!-- /header -->
+
+
+        <div data-role="navbar">
+            <ul dir="rtl" >
+                <li><a href="#home" data-trsnsition="none" data-icon="home">الرئيسية</a></li>
+                <li><a href="#orders" data-trsnsition="none" data-icon="plus">الطلبيات</a></li>
+                <li><a href="#print" data-trsnsition="none" data-icon="mail">طباعه</a></li>
+            </ul>
+        </div>
+
+        <div data-role="main" class="ui-content" dir="rtl">
+            <div class="box">
+                <div class="header">
+                    <h1 dir="rtl">طلبية رقم : E123456</h1>
+                    <hr dir="rtl">
+                    <h4 dir="rtl"> اسم الزبون: محمد سالم محمد</h4>
+                </div>
+         
+                    <!-- Title -->
+                    <div class="ui-grid-solo">
+                        <div class="ui-block-a ">
+                            <div class="title">
+                                <h1>
+                                سلة المشتريات
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="cart" class="prodct basket ">
+                            <!-- content of the cart-->
+                        
+                    </div>                        
+                </div>
+            </div>
+
+            <div class="ui-grid-solo fixed-Btn">
+                <div class="ui-block-a"><button type="v" data-theme="b" id="neworder">طلبية جديده</button></div>
+            </div>
+        </div><!-- /order content -->
+    </div><!-- / Orders page -->
+
+    <!------------------Page 3----------------------->
+    <div data-role="page" id="print">
+        <div data-role="header" data-theme="b">
+            <h1>طلبيات القدس</h1>
+        </div><!-- /header -->
+
+
+        <div data-role="navbar">
+            <ul dir="rtl">
+                <li><a href="#home" data-trsnsition="none" data-icon="home">الرئيسية</a></li>
+                <li><a href="#orders" data-trsnsition="none" data-icon="plus">الطلبيات</a></li>
+                <li><a href="#print" data-trsnsition="none" data-icon="mail">طباعه</a></li>
+            </ul>
+        </div>
+
+        <div data-role="main" class="ui-content" dir="rtl">
+
+        </div><!-- /printcontent -->
+    </div><!-- / Print page -->
+</body>
+
+</html>
