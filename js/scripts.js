@@ -92,7 +92,11 @@ $(document).one('pageinit','#home',function(){
         var productid = $('#productid').val();
         console.log(productid);
         if(productid=='' || productid==null){
-            alert("يجب عليك ادخال رقم الصنف");
+            $.mobile.toast({
+                message: "يجب عليك ادخال رقم الصنف", // Your messages
+                classOnOpen: 'animated bounceInUp' // Animate.css animations
+            });
+            
             return;
         }
 
@@ -105,6 +109,11 @@ $(document).one('pageinit','#home',function(){
         };
 
         order.push(product);
+        $.mobile.toast({
+            message: 'تم اضافة الصنف بنجاح', // Your messages
+            classOnOpen: 'animated bounceInUp', // Animate.css animations
+            duration:3000,
+        });
         showOrder();
     });
 
@@ -125,7 +134,7 @@ $(document).one('pageinit','#home',function(){
             $("#oprice").css("text-decoration-line","none");
         else
             $("#oprice").css("text-decoration-line","line-through");
-    });   
+    });
 });
 
 $(document).one('pageinit','#orders',function(){
@@ -143,4 +152,15 @@ $(document).one('pageinit','#orders',function(){
         showOrder();
     });
 
+});
+
+$(document).one('pageinit','#print',function(){
+
+    $("#showOrder").on("tap",function(e){
+        
+    });
+
+    $("#printOrder").on("tap",function(e){
+        alert("Print Order");
+    });
 });

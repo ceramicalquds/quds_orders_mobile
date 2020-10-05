@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/redmond/jquery-ui.css"/>
+    <link rel="stylesheet" href="css/animate.min.css"/>
     
     
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -18,6 +19,7 @@
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script src="js/mustache.min.js"></script>
     <script src="js/automatic-direction.js"></script>
+    <script src="js/jquery.mobile.toast.min.js"></script>
     <script src="js/scripts.js"></script>
 </head>
 
@@ -79,9 +81,9 @@
                    
                 </div>
             </div>
-            <div class="ui-grid-solo fixed-Btn">
-                <div class="ui-block-a"><button type="v" data-theme="b" id="addproduct">إضافة الى الطلبية</button></div>
-            </div>
+                <div class="ui-grid-solo fixed-Btn">
+                    <div class="ui-block-a"><button type="v" data-theme="b" id="addproduct">إضافة الى الطلبية</button></div>
+                </div>
         </div><!-- /Home content -->
     </div><!-- / Home page -->
 
@@ -148,7 +150,11 @@
         </div>
 
         <div data-role="main" class="ui-content" dir="rtl">
-
+            <div class="ui-grid-solo"><button type="v" data-theme="b" id="showOrder">إظهار الطلبية</button></div>
+            <div id="pdfview">
+            <div class="ui-grid-solo fixed-Btn">
+                <div class="ui-block-a"><button type="v" data-theme="b" id="printOrder">طباعة الطلبية</button></div>
+            </div>
         </div><!-- /printcontent -->
     </div><!-- / Print page -->
 </body>
