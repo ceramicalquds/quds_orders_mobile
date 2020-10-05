@@ -157,10 +157,22 @@ $(document).one('pageinit','#orders',function(){
 $(document).one('pageinit','#print',function(){
 
     $("#showOrder").on("tap",function(e){
-        
-    });
 
-    $("#printOrder").on("tap",function(e){
-        alert("Print Order");
-    });
+        var url="http://www.africau.edu/images/default/sample.pdf";
+        //$("#viewdiv").attr("src",url);
+        
+        var doc = new jsPDF();
+        doc.text("Hello world!", 10, 10);
+        //doc.save("a4.pdf");
+        //var data = doc.output('datauri')
+        //url = "a4.pdf";
+        $.mobile.toast({
+            message: "انتظر من فضلك", // Your messages
+            classOnOpen: 'animated bounceInUp' // Animate.css animations
+        });
+
+        $("#viewdiv").attr("src",doc.output("datauristring"));
+        $('#viewdiv').attr('src', $('#viewdiv').attr('src'));
+    })
+    
 });
