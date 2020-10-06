@@ -20,6 +20,8 @@
     <script src="js/mustache.min.js"></script>
     <script src="js/automatic-direction.js"></script>
     <script src="js/jquery.mobile.toast.min.js"></script>
+    <script src="js/jspdf.min.js"></script>
+    <script src="js/pdfobject.min.js"></script>
     <script src="js/scripts.js"></script>
 </head>
 
@@ -149,12 +151,28 @@
             </ul>
         </div>
 
-        <div data-role="main" class="ui-content" dir="rtl">
+        <div id="content" data-role="main" class="ui-content" dir="rtl">
             <div class="ui-grid-solo"><button type="v" data-theme="b" id="showOrder">إظهار الطلبية</button></div>
-            <div id="pdfview">
+            
+            <div id="orderview" class="ui-grid-b" style="padding:0% 10%">
+                <div class="ui-block-a"></div>
+                <div class="ui-block-b"><img src="img/logo.jpg" height="80px" style="margin-left: auto;margin-right: auto;display: block;"></div>
+                <div class="ui-block-c"></div>
+                <div class="ui-block-a" style="padding:0px 10% 0px 0px "><div class="ui-bar ui-bar-a" style="height:80px;display:flex;align-items:center;justify-content: center;border: rgb(0, 0, 0) 1px solid;color: red;"><h1 id="orderNo">00000</h1></div></div>                                
+                <div class="ui-block-b">
+                    <h1 style="text-align:center;margin-bottom: 0;">شركة القدس للأدوات الصحية</h1>
+                    <h2 style="text-align:center;margin-top: 0;" >لصاحبها : أبناء الحاج يحي القواسمة</h2>
+                </div>
+                <div class="ui-block-c" style="padding: 0px 0px 0px 10%"><div class="ui-bar ui-bar-a" style="height:80px;display:flex;align-items:center;justify-content: center;background-color: black; color: white;"><h1>طلبية</h1></div></div>
+                <div class="ui-block-a"></div>    
+                <div class="ui-block-b"></div>
+                <div class="ui-block-c"><h4>التاريخ:...............................................................</h4></div>                
+            </div>
+            <div class="ui-grid-solo"><h4>المطلوب من السيد</h4></div>
+
             <div class="ui-grid-solo fixed-Btn">
                 <div class="ui-block-a"><button type="v" data-theme="b" id="printOrder">طباعة الطلبية</button></div>
-            </div>
+            </div> 
         </div><!-- /printcontent -->
     </div><!-- / Print page -->
 </body>
