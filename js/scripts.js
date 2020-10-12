@@ -40,6 +40,47 @@ function showOrder(){
     })
 }
 
+function showOrderPrint(){
+    $("#orderTable").empty();
+    var tableheadhtml=""
+        +'<colgroup>'
+            +'<col span="1" style="width: 20%;">'
+            +'<col span="1" style="width: 10%;">'
+            +'<col span="1" style="width: 10%;">'
+            +'<col span="1" style="width: 10%;">'
+            +'<col span="1" style="width: 40%;">'
+            +'<col span="1" style="width: 10%;">'
+        +'</colgroup>'
+        +'<tr>'
+            +'<th>الإجمالي</th>'
+            +'<th>الكمية</th>'
+            +'<th>السعر</th>'
+            +'<th>الوحدة</th>'
+            +'<th>البيان</th>'
+            +'<th>الرقم</th>'
+        +'</tr>';
+    $("#orderTable").append(Mustache.render(tableheadhtml,order));
+    $.each(order,function(index,product){
+        var tablecontenthtml=""
+            +'<tr>'
+                +'<td>'+product.amount*product.price+'</td>'
+                +'<td>{{amount}}</td>'
+                +'<td>{{price}}</td>'
+                +'<td>{{unit}}</td>'
+                +'<td>{{productid}}:{{desc}} </td>'
+                +'<td>'+ ++index +'</td>'
+            +'</tr>';
+        $("#orderTable").append(Mustache.render(tablecontenthtml,product));        
+    });
+    var tablefooterhtml=""
+        +'<tr dir="rtl">'            
+            +'<td id="totalamount">3434</td>'
+            +'<td colspan="5">المجموع:</td>'
+        +'</tr>';
+    $("#orderTable").append(Mustache.render(tablefooterhtml,null));
+    
+}
+
 function requestProductInfo(e){
     var products = [
         {
@@ -115,6 +156,7 @@ $(document).one('pageinit','#home',function(){
             duration:3000,
         });
         showOrder();
+        showOrderPrint();
     });
 
     $("#productid").bind('input propertychange', function() {
@@ -150,6 +192,7 @@ $(document).one('pageinit','#orders',function(){
         order.splice(index, 1)
         console.log(index);
         showOrder();
+        showOrderPrint();
     });
 
 });
@@ -173,6 +216,10 @@ $(document).one('pageinit','#print',function(){
 
         $("#viewdiv").attr("src",doc.output("datauristring"));
         $('#viewdiv').attr('src', $('#viewdiv').attr('src'));
-    })
+    });
+
+    $("#printOrder").on("tap",function(e){
+        $("#orderview").print();
+    });
     
 });

@@ -22,6 +22,7 @@
     <script src="js/jquery.mobile.toast.min.js"></script>
     <script src="js/jspdf.min.js"></script>
     <script src="js/pdfobject.min.js"></script>
+    <script src="js/jquery.print.min.js"></script>
     <script src="js/scripts.js"></script>
 </head>
 
@@ -108,9 +109,9 @@
         <div data-role="main" class="ui-content" dir="rtl">
             <div class="box">
                 <div class="header">
-                    <h1 dir="rtl">طلبية رقم : E123456</h1>
+                    <h1 dir="rtl">طلبية رقم :<span id="orderno"></spanid> </h1>
                     <hr dir="rtl">
-                    <h4 dir="rtl"> اسم الزبون: محمد سالم محمد</h4>
+                    <h4 dir="rtl"> اسم الزبون: <input id="price" value="" ></h4>
                 </div>
          
                     <!-- Title -->
@@ -152,24 +153,80 @@
         </div>
 
         <div id="content" data-role="main" class="ui-content" dir="rtl">
-            <div class="ui-grid-solo"><button type="v" data-theme="b" id="showOrder">إظهار الطلبية</button></div>
-            
-            <div id="orderview" class="ui-grid-b" style="padding:0% 10%">
-                <div class="ui-block-a"></div>
-                <div class="ui-block-b"><img src="img/logo.jpg" height="80px" style="margin-left: auto;margin-right: auto;display: block;"></div>
-                <div class="ui-block-c"></div>
-                <div class="ui-block-a" style="padding:0px 10% 0px 0px "><div class="ui-bar ui-bar-a" style="height:80px;display:flex;align-items:center;justify-content: center;border: rgb(0, 0, 0) 1px solid;color: red;"><h1 id="orderNo">00000</h1></div></div>                                
-                <div class="ui-block-b">
-                    <h1 style="text-align:center;margin-bottom: 0;">شركة القدس للأدوات الصحية</h1>
-                    <h2 style="text-align:center;margin-top: 0;" >لصاحبها : أبناء الحاج يحي القواسمة</h2>
+            <div id="orderview">
+                <div class="ui-grid-b" style="padding:0% 10%">
+                    <div class="ui-block-a"></div>
+                    <div class="ui-block-b"><img src="img/logo.jpg" height="80px" style="margin-left: auto;margin-right: auto;display: block;"></div>
+                    <div class="ui-block-c"></div>
+                    <div class="ui-block-a" style="padding:0px 10% 0px 0px "><div class="ui-bar ui-bar-a" style="height:80px;display:flex;align-items:center;justify-content: center;border: rgb(0, 0, 0) 1px solid;color: red;"><h1 id="orderNo">00000</h1></div></div>                                
+                    <div class="ui-block-b">
+                        <h3 style="text-align:center;margin-bottom: 0;">شركة القدس للأدوات الصحية</h3>
+                        <h5 style="text-align:center;margin-top: 0;" >لصاحبها : أبناء الحاج يحي القواسمة</h5>
+                    </div>
+                    <div class="ui-block-c" style="padding: 0px 0px 0px 10%"><div class="ui-bar ui-bar-a" style="height:80px;display:flex;align-items:center;justify-content: center;background-color: black; color: white;"><h1>طلبية</h1></div></div>
+                    <div class="ui-block-a"></div>    
+                    <div class="ui-block-b"></div>
+                    <div class="ui-block-c" style="direction: rtl;"><h4>التاريخ:<span id="curdate"></span></h4></div>                
                 </div>
-                <div class="ui-block-c" style="padding: 0px 0px 0px 10%"><div class="ui-bar ui-bar-a" style="height:80px;display:flex;align-items:center;justify-content: center;background-color: black; color: white;"><h1>طلبية</h1></div></div>
-                <div class="ui-block-a"></div>    
-                <div class="ui-block-b"></div>
-                <div class="ui-block-c"><h4>التاريخ:...............................................................</h4></div>                
+                <div class="ui-grid-solo" style="padding: 0px 10% 0px 0;direction: rtl;"><h4>المطلوب من السيد:<span id="toname"></span></h4></div>
+                <table style="width:100%" dir="ltr" id="orderTable">
+                    <colgroup>
+                        <col span="1" style="width: 20%;">
+                        <col span="1" style="width: 10%;">
+                        <col span="1" style="width: 10%;">
+                        <col span="1" style="width: 10%;">
+                        <col span="1" style="width: 40%;">
+                        <col span="1" style="width: 10%;">
+                     </colgroup>
+                    <tr>
+                      <th>الإجمالي</th>
+                      <th>الكمية</th> 
+                      <th>السعر</th>
+                      <th>الوحدة</th>
+                      <th>البيان</th>
+                      <th>الرقم</th>
+                    </tr>
+                    <tr>
+                      <td>Jill</td>
+                      <td>Smith</td>
+                      <td>50</td>
+                      <td>50</td>
+                      <td>50</td>
+                      <td>50</td>
+                    </tr>
+                    <tr>
+                      <td>Eve</td>
+                      <td>Jackson</td>
+                      <td>94</td>
+                      <td>50</td>
+                      <td>50</td>
+                      <td>50</td>
+                    </tr>
+                    <tr>
+                      <td>John</td>
+                      <td>Doe</td>
+                      <td>80</td>
+                      <td>50</td>
+                      <td>50</td>
+                      <td>50</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">المجموع:</td>
+                        <td id="totalamount"></td>
+                    </tr>
+                </table>
+                <table style="width:100%; border: 1px solid #000; background-color: dimgrey;color :white;direction: rtl;">
+                    <tr>
+                          <td>سفيان : 0599707656</td>
+                          <td>سفيان: </td>
+                          <td>عصام : 0568962000</td>
+                          <td>فارس : 0568965000</td>
+                          <td>عاصم : 0568964000</td>
+                    </tr>
+                      
+                </table>
             </div>
-            <div class="ui-grid-solo"><h4>المطلوب من السيد</h4></div>
-
+           
             <div class="ui-grid-solo fixed-Btn">
                 <div class="ui-block-a"><button type="v" data-theme="b" id="printOrder">طباعة الطلبية</button></div>
             </div> 
