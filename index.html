@@ -111,7 +111,7 @@
                 <div class="header">
                     <h1 dir="rtl">طلبية رقم :<span id="orderno"></spanid> </h1>
                     <hr dir="rtl">
-                    <h4 dir="rtl"> اسم الزبون: <input id="price" value="" ></h4>
+                    <h4 dir="rtl"> اسم الزبون: <input id="custname" value="" ></h4>
                 </div>
          
                     <!-- Title -->
@@ -166,9 +166,9 @@
                     <div class="ui-block-c" style="padding: 0px 0px 0px 10%"><div class="ui-bar ui-bar-a" style="height:80px;display:flex;align-items:center;justify-content: center;background-color: black; color: white;"><h1>طلبية</h1></div></div>
                     <div class="ui-block-a"></div>    
                     <div class="ui-block-b"></div>
-                    <div class="ui-block-c" style="direction: rtl;"><h4>التاريخ:<span id="curdate"></span></h4></div>                
+                    <div class="ui-block-c" style="direction: rtl;"><h4>التاريخ: <span id="curdate"></span></h4></div>                
                 </div>
-                <div class="ui-grid-solo" style="padding: 0px 10% 0px 0;direction: rtl;"><h4>المطلوب من السيد:<span id="toname"></span></h4></div>
+                <div class="ui-grid-solo" style="padding: 0px 10% 0px 0;direction: rtl;" ><h4>المطلوب من السيد: <span id="toname"></span></h4></div>
                 <table style="width:100%" dir="ltr" id="orderTable">
                     <colgroup>
                         <col span="1" style="width: 20%;">
@@ -186,33 +186,9 @@
                       <th>البيان</th>
                       <th>الرقم</th>
                     </tr>
-                    <tr>
-                      <td>Jill</td>
-                      <td>Smith</td>
-                      <td>50</td>
-                      <td>50</td>
-                      <td>50</td>
-                      <td>50</td>
-                    </tr>
-                    <tr>
-                      <td>Eve</td>
-                      <td>Jackson</td>
-                      <td>94</td>
-                      <td>50</td>
-                      <td>50</td>
-                      <td>50</td>
-                    </tr>
-                    <tr>
-                      <td>John</td>
-                      <td>Doe</td>
-                      <td>80</td>
-                      <td>50</td>
-                      <td>50</td>
-                      <td>50</td>
-                    </tr>
-                    <tr>
-                        <td colspan="5">المجموع:</td>
+                    <tr style="direction: rtl;">                        
                         <td id="totalamount"></td>
+                        <td colspan="5">المجموع:</td>
                     </tr>
                 </table>
                 <table style="width:100%; border: 1px solid #000; background-color: dimgrey;color :white;direction: rtl;">

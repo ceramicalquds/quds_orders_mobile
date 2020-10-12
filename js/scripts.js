@@ -1,5 +1,5 @@
 var order = new Array();
-
+var custname="";
 
 function showOrder(){
     $("#cart").empty();
@@ -42,6 +42,8 @@ function showOrder(){
 
 function showOrderPrint(){
     $("#orderTable").empty();
+    var current_datetime = new Date();
+    $("#curdate").text(current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate());
     var tableheadhtml=""
         +'<colgroup>'
             +'<col span="1" style="width: 20%;">'
@@ -60,21 +62,24 @@ function showOrderPrint(){
             +'<th>الرقم</th>'
         +'</tr>';
     $("#orderTable").append(Mustache.render(tableheadhtml,order));
-    $.each(order,function(index,product){
+    var total=0
+    $.each(order,function(index,product){   
+        var prodtotal = product.amount*product.price;     
         var tablecontenthtml=""
             +'<tr>'
-                +'<td>'+product.amount*product.price+'</td>'
+                +'<td>'+prodtotal+'</td>'
                 +'<td>{{amount}}</td>'
                 +'<td>{{price}}</td>'
                 +'<td>{{unit}}</td>'
                 +'<td>{{productid}}:{{desc}} </td>'
                 +'<td>'+ ++index +'</td>'
             +'</tr>';
+            total +=prodtotal;
         $("#orderTable").append(Mustache.render(tablecontenthtml,product));        
     });
     var tablefooterhtml=""
         +'<tr dir="rtl">'            
-            +'<td id="totalamount">3434</td>'
+            +'<td id="totalamount">'+total+'</td>'
             +'<td colspan="5">المجموع:</td>'
         +'</tr>';
     $("#orderTable").append(Mustache.render(tablefooterhtml,null));
@@ -155,6 +160,7 @@ $(document).one('pageinit','#home',function(){
             classOnOpen: 'animated bounceInUp', // Animate.css animations
             duration:3000,
         });
+        $("#productid").val("");
         showOrder();
         showOrderPrint();
     });
@@ -177,6 +183,8 @@ $(document).one('pageinit','#home',function(){
         else
             $("#oprice").css("text-decoration-line","line-through");
     });
+
+  
 });
 
 $(document).one('pageinit','#orders',function(){
@@ -193,6 +201,11 @@ $(document).one('pageinit','#orders',function(){
         console.log(index);
         showOrder();
         showOrderPrint();
+    });
+
+    $("#custname").bind('input propertychange', function() {
+        var custname = $("#custname").val();
+        $("#toname").text(custname);
     });
 
 });
