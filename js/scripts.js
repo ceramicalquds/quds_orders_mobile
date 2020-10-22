@@ -109,17 +109,37 @@ function requestProductInfo(e){
     ];
     var product=null;
 
-    products.forEach(function(tproduct){
+    // $.getJSON("http://ceramicalquds.com/api/item_collection/",
+    //     function(data){
+    //         console.log(data);
+    //     },'html')
+    //     .done(function(){
+    //         alert("Completed");
+    //     })
+    //     .fail(function(e){
+    //         console.log("Error:");
+    //     })
+    //     .always(function(){});
 
-        if(tproduct.productid==e){
-            product=tproduct;
-            return product;
+    $.ajax({
+        crossOrigin: true,
+        url: "http://ceramicalquds.com/api/item_collection/",
+        type: "GET",
+        dataType: "JSON",
+        contentType: "text/json",        
+        beforeSend : function(xhr){
+            xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        },
+        success : function(result) {
+            console.log(result);
         }
-        else
-            return null;
+
     });
+   
     return product;
 }
+
 function processData(data,status){
     $("#elem").html($("#template").render(data))
 }
@@ -182,9 +202,7 @@ $(document).one('pageinit','#home',function(){
             $("#oprice").css("text-decoration-line","none");
         else
             $("#oprice").css("text-decoration-line","line-through");
-    });
-
-  
+    });  
 });
 
 $(document).one('pageinit','#orders',function(){
