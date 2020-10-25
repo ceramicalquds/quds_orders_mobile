@@ -86,58 +86,53 @@ function showOrderPrint(){
     
 }
 
-function requestProductInfo(e){
-    var products = [
-        {
-            productid:12345,
-            amount:100,
-            price:34,
-            desc:"desc 12345",
-        },
-        {
-            productid:23456,
-            amount:200,
-            price:64,
-            desc:"desc 23456",
-        },
-        {
-            productid:34567,
-            amount:150,
-            price:44,
-            desc:"desc 34567",
-        }
-    ];
-    var product=null;
+function handleproduct(product){
+    $("#oprice").html(product.price);
+    $("#desc").html(product.title).append("\n"+product.width).append("\n"+product.height);
+    $("#prodimage").attr('src',product.pic); 
+}
 
-    // $.getJSON("http://ceramicalquds.com/api/item_collection/",
-    //     function(data){
-    //         console.log(data);
-    //     },'html')
-    //     .done(function(){
-    //         alert("Completed");
-    //     })
-    //     .fail(function(e){
-    //         console.log("Error:");
-    //     })
-    //     .always(function(){});
+function requestProductInfo(e){
+    var product={};
+    var ccode =$("#productid").val();
+    var url =  "http://ceramicalquds.com/api/item_collection/?code="+ccode+"&format=json";
 
     $.ajax({
-        crossOrigin: true,
-        url: "http://ceramicalquds.com/api/item_collection/",
-        type: "GET",
-        dataType: "JSON",
-        contentType: "text/json",        
-        beforeSend : function(xhr){
-            xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-            xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        url: url,
+        crossOrigin:true,
+        headers: {  
+            'Access-Control-Allow-Credentials' : true,  
+            'Access-Control-Allow-Origin': 'http://ceramicalquds.com/',  
+            'Access-Control-Allow-Methods':'GET',  
+            'Access-Control-Allow-Headers':'application/json',
+            'SameSite':'none',  
         },
+        jsonpCallback:"handleproduct",
+        type: "GET",
+        contentType: "application/x-www-form-urlencoded",
+        dataType: "jsonp",                
+        // beforeSend : function(xhr){
+        //     xhr.setRequestHeader("Access-Control-Allow-Origin", "http://ceramicalquds.com/");
+        //     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        // },
         success : function(result) {
-            console.log(result);
+            var object =   $.parseJSON(result);   
+            product["productid"] = object[0].code;
+            product["desc"] = object[0].desc;
+            product["title"] = object[0].title;
+            product["price"] = object[0].oprice;
+            product["pic"] = object[0].pic;
+            product["available"] = object[0].available;
+            product["width"] = object[0].width;
+            product["height"] = object[0].height;
+        },
+        complete: function(data){
+            console.log("Completed");
         }
 
     });
    
-    return product;
+    
 }
 
 function processData(data,status){
@@ -186,12 +181,11 @@ $(document).one('pageinit','#home',function(){
     });
 
     $("#productid").bind('input propertychange', function() {
-        console.log(this.value);
         var searchedProduct = requestProductInfo(this.value);
         if(searchedProduct!=null){
             $("#oprice").html(searchedProduct.price);
             $("#desc").html(searchedProduct.desc);     
-        }        
+        }    
     });
 
    
